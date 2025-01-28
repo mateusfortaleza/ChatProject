@@ -8,7 +8,14 @@
 <body>
     <main>
         <h1>Welcome to the Chat</h1>
-        
+        <form action="" method="post">
+            <label for="email"> Email: 
+                <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
+            </label>
+            <label for="password">Password: 
+                <input type="password" name="chatPassword" id="password" required>
+            </label>
+        </form>
     </main>
 </body>
 </html>
