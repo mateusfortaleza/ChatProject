@@ -17,6 +17,7 @@
                 <input type="password" name="chatPassword" id="password" required>
             </label>
         </form>
+        <input type="button" value="Submit" />
     </main>
 </body>
 </html>
