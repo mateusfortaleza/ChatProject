@@ -9,8 +9,11 @@
 <body>
     <main>
         <h1>Welcome to the Chat</h1>
-        <form action="" method="post">
-            <label for="email"> Email: 
+        <form action="index.php" method="post">
+            <label> Name: 
+                <input type="text" name="chatName" id="name">
+            </label>
+            <label> Email: 
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
             </label>
             <label for="password">Password: 
