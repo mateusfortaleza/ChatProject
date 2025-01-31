@@ -11,7 +11,7 @@
         <h1>Welcome to the Chat</h1>
         <form action="index.php" method="post">
             <label> Name: 
-                <input type="text" name="chatName" id="name">
+                <input type="text" name="chatName" id="name" placeholder="John Doe" required>
             </label>
             <label> Email: 
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
@@ -20,7 +20,7 @@
                 <input type="password" name="chatPassword" id="password" required>
             </label>
         </form>
-        <input type="button" value="Submit" />
+        <input type="submit" value="Submit" />
     </main>
 </body>
 </html>
