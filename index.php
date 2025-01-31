@@ -22,5 +22,7 @@
         </form>
         <input type="submit" value="Submit" />
     </main>
+    <p>Don't have a account?</p>
+    <a href="register.php"><input type="button" value="Register Now"></a>
 </body>
 </html>
