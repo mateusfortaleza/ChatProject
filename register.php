@@ -1,3 +1,48 @@
+<?php
+    // Page level variables
+    $registerSucessful = false;
+    $validForm = false;
+    $validationError = "";
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        // Assign POST data
+        $formName = $_POST['chatName'];
+        $formEmail = $_POST['chatEmail'];
+        $formPassword = $_POST['chatPassword'];
+
+        $validEmail = false;
+        // Validar email
+            // cONECTAR NO BANDO
+            // fAZER A QUERY PARA VERIFICAR SE EXISTE ESTE EMAIL
+            // SE EXISTE O FORMULARIIO EH INVALIDO
+            // SE NAO EXISTE O FORMULARIO EH VALIDO
+
+        $validName = false;
+        // VALIDACAO DO NOME
+
+        $validForm = $validEmail && $validName;
+        // Register user
+        if ($validForm) {
+            $link = mysqli_connect("127.0.0.1","root","","mateus");
+            if (!$link) {
+                echo "Connection unsuccessfull"; 
+                exit;
+            }
+        
+            $sql = "INSERT INTO user (Name, Email, Password) VALUES ('" . $formName . "', '" . $formEmail . "', '" . $formPassword . "' )";
+        
+            if (mysqli_query($link, $sql)) {
+                $registerSucessful = true;
+            } else {
+                echo "Registration unsuccessfull. Contact support if this problem persists";
+                echo mysqli_error($link);
+            }
+            
+            mysqli_close($link);
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +53,27 @@
 </head>
 <body>
     <main>
-        <form action="register.php" method="post">
-            <h1>Register</h1>
-            <label> Name: 
-                <input type="text" name="chatName" id="name" required>
-            </label>
-            <label> Email: 
-                <input type="email" name="chatEmail" id="email" required>
-            </label>
-            <label> Password: 
-                <input type="password" name="chatPassword" id="password" required>
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
+        <?php if ($registerSucessful) { ?>
+            <h2>Registration sucessful</h2>
+            <p><a href="index.php">Back to Sign In</a></p>
+        <?php } else { ?>
+            <?php if (!$validForm) { ?>
+                <h3><?php echo $validationError ?></h3>
+            <?php } ?>
+            <form action="register.php" method="post">
+                <h1>Register</h1>
+                <label> Name: 
+                    <input type="text" name="chatName" id="name" required>
+                </label>
+                <label> Email: 
+                    <input type="email" name="chatEmail" id="email" required>
+                </label>
+                <label> Password: 
+                    <input type="password" name="chatPassword" id="password" required>
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        <?php } ?>
     </main>
 </body>
 </html>
