@@ -11,18 +11,18 @@
         <h1>Welcome to the Chat</h1>
         <form action="index.php" method="post">
             <label> Name: 
-                <input type="text" name="chatName" id="name" placeholder="John Doe" required>
+                <input type="text" name="chatName" id="name" placeholder="Your name" required>
             </label>
             <label> Email: 
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
             </label>
-            <label for="password">Password: 
+            <label for="password"> Password: 
                 <input type="password" name="chatPassword" id="password" required>
             </label>
         </form>
         <input type="submit" value="Submit" />
     </main>
     <p>Don't have a account?</p>
-    <a href="register.php"><input type="button" value="Register Now"></a>
+    <a href="register.php"><input type="button" value="Register Now" /></a>
 </body>
 </html>
