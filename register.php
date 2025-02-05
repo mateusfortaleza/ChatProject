@@ -80,9 +80,11 @@
                 <label> Password: 
                     <input type="password" name="chatPassword" id="password" required>
                 </label>
-                <input type="submit" value="Submit" />
             </form>
+            <input type="submit" value="Submit" />
         <?php } ?>
     </main>
+    <p> Already have a account?</p>
+    <a href="index.php"><input type="button" value="Return"></a>
 </body>
 </html>
