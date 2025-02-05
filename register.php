@@ -4,23 +4,32 @@
     $validForm = false;
     $validationError = "";
 
+    function validateEmail($email) {
+        $conn = mysqli_connect('127.0.0.1','root','','mateus');    
+        if(!$conn) {
+            echo "Connection failed";
+            exit();
+        }
+        $EmailSql = "SELECT * FROM user WHERE email = '$email'";
+        $result = mysqli_query($conn, $EmailSql);
+        $numRows = mysqli_num_rows($result);
+        mysqli_close($conn);
+        if($numRows == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // Assign POST data
         $formName = $_POST['chatName'];
         $formEmail = $_POST['chatEmail'];
         $formPassword = $_POST['chatPassword'];
 
-        $validEmail = false;
-        // Validar email
-            // cONECTAR NO BANDO
-            // fAZER A QUERY PARA VERIFICAR SE EXISTE ESTE EMAIL
-            // SE EXISTE O FORMULARIIO EH INVALIDO
-            // SE NAO EXISTE O FORMULARIO EH VALIDO
+        $validEmail = validateEmail($formEmail);
 
-        $validName = false;
-        // VALIDACAO DO NOME
-
-        $validForm = $validEmail && $validName;
+        $validForm = $validEmail;
         // Register user
         if ($validForm) {
             $link = mysqli_connect("127.0.0.1","root","","mateus");
