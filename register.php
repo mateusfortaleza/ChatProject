@@ -5,19 +5,19 @@
     $validationError = "";
 
     function validateEmail($email) {
-        $conn = mysqli_connect('127.0.0.1','root','','mateus');    
+        $conn = mysqli_connect('127.0.0.1','root','','chat');    
         if(!$conn) {
             echo "Connection failed";
             exit();
         }
-        $EmailSql = "SELECT * FROM user WHERE email = '$email'";
+        $EmailSql = "SELECT * FROM user WHERE email = '$email' ";
         $result = mysqli_query($conn, $EmailSql);
         $numRows = mysqli_num_rows($result);
         mysqli_close($conn);
         if($numRows == 0) {
             return true;
         } else {
-            return false;
+            return false;   
         }
     };
 
@@ -32,7 +32,7 @@
         $validForm = $validEmail;
         // Register user
         if ($validForm) {
-            $link = mysqli_connect("127.0.0.1","root","","mateus");
+            $link = mysqli_connect("127.0.0.1","root","","chat");
             if (!$link) {
                 echo "Connection unsuccessfull"; 
                 exit;
@@ -64,7 +64,7 @@
     <main>
         <?php if ($registerSucessful) { ?>
             <h2>Registration sucessful</h2>
-            <p><a hsref="index.php">Back to Sign In</a></p>
+            <p><a href="index.php">Back to Sign In</a></p>
         <?php } else { ?>
             <?php if (!$validForm) { ?>
                 <h3><?php echo $validationError ?></h3>
@@ -80,8 +80,8 @@
                 <label> Password: 
                     <input type="password" name="chatPassword" id="password" required>
                 </label>
+                <input type="submit" value="Submit" required/>
             </form>
-            <input type="submit" value="Submit" />
         <?php } ?>
     </main>
     <p> Already have a account?</p>
