@@ -25,11 +25,12 @@ main {
 
 form {
     margin-top: 20px;
-    font-size: 30px;
+
 }
 
 input[type="submit"] {
-    margin-top: 20px;
+    
+    margin: 10px 50vw; 
     padding: 7px 20px;
     font-size: 15px;
     background-color: white;
