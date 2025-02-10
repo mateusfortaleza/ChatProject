@@ -69,8 +69,8 @@
             <label for="password"> Password: 
                 <input type="password" name="chatPassword" id="password" required>
             </label>
+            <input type="submit" value="Sign In" />
         </form>
-        <input type="submit" value="Sign In" />
     </main>
     <p>Don't have a account?</p>
     <a href="register.php"><input type="button" value="Register Now" /></a>
