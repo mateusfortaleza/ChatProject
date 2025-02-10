@@ -58,13 +58,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css" />
-    <title>Register</title>
+    <title>Register Now</title>
 </head>
 <body>
     <main>
         <?php if ($registerSucessful) { ?>
             <h2>Registration sucessful</h2>
-            <p><a href="index.php">Back to Sign In</a></p>
+            <p><a hsref="index.php">Back to Sign In</a></p>
         <?php } else { ?>
             <?php if (!$validForm) { ?>
                 <h3><?php echo $validationError ?></h3>
