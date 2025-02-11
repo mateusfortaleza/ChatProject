@@ -2,47 +2,39 @@
     $loginSucessful = false;
     $validForm = false;
     $validationError = "";
-
-    function validateEmail($email) {
-        $conn = mysqli_connect('127.0.0.1','root','','mateus');    
-        if(!$conn) {
-            echo "Connection failed";
-            exit();
-        }
-        $EmailSql = "SELECT * FROM user WHERE email = '$email'";
-        $result = mysqli_query($conn, $EmailSql);
-        $numRows = mysqli_num_rows($result);
-        mysqli_close($conn);
-        if($numRows == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    };
     
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // Assign POST data
         $formEmail = $_POST['chatEmail'];
         $formPassword = $_POST['chatPassword'];
 
-        $validEmail = validateEmail($formEmail);
+        $validForm = true;
 
-        $validForm = $validEmail;
         // Login user
         if ($validForm) {
-            $link = mysqli_connect("127.0.0.1","root","","mateus");
+            $link = mysqli_connect("127.0.0.1","root","","chat");
             if (!$link) {
                 echo "Connection unsuccessfull"; 
                 exit;
             }
         
-            $sql = "SELECT * FROM user WHERE Email = '$formEmail'";
+            $sql = "SELECT * FROM user WHERE Email = '$formEmail' AND password = '$formPassword'";
+            $result = mysqli_query($link, $sql);
         
-            if (mysqli_query($link, $sql)) {
-                $loginSucessful = true;
-                header('Location: http://localhost/Chat-site/chat.php');
+            if ($result) {
+                $hasRows = mysqli_num_rows($result) > 0;
+
+                if ($hasRows) {
+                    // Está logado
+                    $loginSucessful = true;
+                    header('Location: http://localhost/ChatProject/chat.php');
+                }
+                else {
+                    // Acesso negado
+                }
+
             } else {
-                echo "Login unsuccessfull. Contact support if this problem persists";
+                echo "Access denied";
                 echo mysqli_error($link);
             }
             
