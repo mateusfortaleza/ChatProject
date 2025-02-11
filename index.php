@@ -29,9 +29,6 @@
                     $loginSucessful = true;
                     header('Location: http://localhost/ChatProject/chat.php');
                 }
-                else {
-                    // Acesso negado
-                }
 
             } else {
                 echo "Access denied";
@@ -61,7 +58,10 @@
             <label for="password"> Password: 
                 <input type="password" name="chatPassword" id="password" required>
             </label>
-            <input type="submit" value="Sign In" />
+            <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
+                <p>Email or password incorrect. Try again</p>
+            <?php }?>
+            <input type="submit" value="Sign In" class="IndexButton"/>
         </form>
     </main>
     <p>Don't have a account?</p>
