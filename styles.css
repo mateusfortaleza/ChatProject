@@ -29,8 +29,10 @@ form {
 }
 
 input[type="submit"] {
-    
-    margin: 10px 50vw; 
+    display: flex;
+    position: absolute;
+    top: 23vh;
+    left: 47vw;
     padding: 7px 20px;
     font-size: 15px;
     background-color: white;
@@ -54,6 +56,6 @@ input[type="button"]:hover {
 }
 
 p {
-    margin-top: 40px;
+    margin-top: 80px;
     font-size: 26px;
 }
