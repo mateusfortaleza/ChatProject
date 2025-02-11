@@ -82,7 +82,7 @@
                 <label> Password: 
                     <input type="password" name="chatPassword" id="password" required>
                 </label>
-                <input type="submit" value="Submit" required/>
+                <input type="submit" value="Submit" class="RegisterButton"/>
             </form>
         </main>
         <p> Already have a account?</p>
