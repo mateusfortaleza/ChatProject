@@ -39,8 +39,10 @@
             }
         
             $sql = "INSERT INTO user (Name, Email, Password) VALUES ('" . $formName . "', '" . $formEmail . "', '" . $formPassword . "' )";
-        
-            if (mysqli_query($link, $sql)) {
+
+            $query = mysqli_query($link, $sql);
+
+            if ($query) {
                 $registerSucessful = true;
             } else {
                 echo "Registration unsuccessfull. Contact support if this problem persists";
@@ -82,9 +84,9 @@
                 </label>
                 <input type="submit" value="Submit" required/>
             </form>
-        <?php } ?>
-    </main>
-    <p> Already have a account?</p>
-    <a href="index.php"><input type="button" value="Return"></a>
+        </main>
+        <p> Already have a account?</p>
+        <a href="index.php"><input type="button" value="Return"></a>
+     <?php } ?>
 </body>
 </html>
