@@ -30,8 +30,8 @@ form {
 
 input[type="submit"] {
     display: flex;
-    position: absolute;
-    top: 23vh;
+    position: sticky;
+    margin-top: 3vh;
     left: 47vw;
     padding: 7px 20px;
     font-size: 15px;
