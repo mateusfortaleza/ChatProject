@@ -28,11 +28,22 @@ form {
 
 }
 
-input[type="submit"] {
+.IndexButton {
     display: flex;
     position: relative;
     margin-top: 3vh;
     left: 17vw;
+    padding: 7px 20px;
+    font-size: 15px;
+    background-color: white;
+    border: 0;
+}
+
+.RegisterButton {
+    display: flex;
+    position: relative;
+    margin-top: 3vh;
+    left: 26vw;
     padding: 7px 20px;
     font-size: 15px;
     background-color: white;
@@ -47,15 +58,35 @@ input[type="button"] {
     border: 0;
 }
 
-input[type="submit"]:hover {
-    cursor: pointer;
-}
-
 input[type="button"]:hover {
     cursor: pointer;
 }
 
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
 p {
-    margin-top: 80px;
+    margin-top: 40px;
     font-size: 26px;
+}
+
+.chatArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+textarea {
+    min-width: 500px;
+    border-radius: 20px;
+    bottom: 50px;
+}
+
+.TextSubmit {
+    bottom: 60px;
+    right: 150px; 
+    border: 0;
+    border-radius: 20px; 
+    padding: 20px;
 }
