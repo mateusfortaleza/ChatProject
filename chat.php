@@ -1,5 +1,20 @@
 <?php 
-    
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        date_default_timezone_set("AMERICA/SAO_PAULO");
+        $text = $_POST['chatText'];
+        $date = date("d/m/Y H:i:s");
+        
+       $link = mysqli_connect('127.0.0.1', 'root', '', 'messages');
+        
+        if(!$link) {
+            echo "Connection error: " . mysqli_connect_error();
+            die();
+        }
+
+        $sql = "INSERT INTO messages (Message, Date) VALUES ('" . $text . "','" . $date . "')";
+
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -8,17 +23,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <main>
         <h1>Chat</h1>
-        <div class="chatArea">
-            <label for="chatText">        
-            <textarea name="chatText" id="chatText"></textarea>
-            </label>
+        <form class="chatArea" action="chat.php" method="POST">
+            <textarea name="chatText" id="chatText"></textarea> 
             <input type="submit" value="Submit" class="TextSubmit" />
-        </div>
+        </form>
     </main>
 </body>
 </html>
