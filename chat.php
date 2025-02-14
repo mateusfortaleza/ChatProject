@@ -4,15 +4,14 @@
         $text = $_POST['chatText'];
         $date = date("d/m/Y H:i:s");
         
-       $link = mysqli_connect('127.0.0.1', 'root', '', 'messages');
-        
+        $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
         if(!$link) {
-            echo "Connection error: " . mysqli_connect_error();
+            echo "Connection error: " . mysqli_connect_errno();
             die();
         }
 
-        $sql = "INSERT INTO messages (Message, Date) VALUES ('" . $text . "','" . $date . "')";
-
+        $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", $text, $date)";
+        $result = mysqli_query($link, $sql);      
 
     }
 ?>
