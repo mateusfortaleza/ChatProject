@@ -2,7 +2,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         date_default_timezone_set("AMERICA/SAO_PAULO");
         $text = $_POST['chatText'];
-        $date = date("d/m/Y H:i:s");
+        $date = date("Y-m-d H:i:s");
         
         $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
         if(!$link) {
@@ -10,8 +10,9 @@
             die();
         }
 
-        $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", $text, $date)";
-        $result = mysqli_query($link, $sql);      
+        $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", '$text', '$date')";
+        $result = mysqli_query($link, $sql);
+          
 
     }
 ?>
@@ -26,9 +27,11 @@
 </head>
 <body>
     <main>
-        <h1>Chat</h1>
+        <h1 class="chat-title">Chat</h1>
+        
         <form class="chatArea" action="chat.php" method="POST">
-            <textarea name="chatText" id="chatText"></textarea> 
+            <label for="chatText" class="sr-only">Chat</label>
+            <input type="text" name="chatText" id="chatText" required/>
             <input type="submit" value="Submit" class="TextSubmit" />
         </form>
     </main>
