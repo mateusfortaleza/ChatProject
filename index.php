@@ -20,13 +20,15 @@
         
             $sql = "SELECT * FROM user WHERE Email = '$formEmail' AND password = '$formPassword'";
             $result = mysqli_query($link, $sql);
-        
+            
             if ($result) {
                 $hasRows = mysqli_num_rows($result) > 0;
-
+                
                 if ($hasRows) {
                     // Está logado
                     $loginSucessful = true;
+                    $user = mysqli_fetch_assoc($result);
+                    setcookie("user", $user['ID']);
                     header('Location: http://localhost/ChatProject/chat.php');
                 }
 
