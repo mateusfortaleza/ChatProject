@@ -54,15 +54,15 @@
     <main>
         <h1>Welcome to the Chat</h1>
         <form action="index.php" method="post">
+            <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
+                <p>Email or password incorrect. Try again</p>
+            <?php }?>
             <label> Email: 
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
             </label>
             <label for="password"> Password: 
                 <input type="password" name="chatPassword" id="password" required>
             </label>
-            <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
-                <p>Email or password incorrect. Try again</p>
-            <?php }?>
             <input type="submit" value="Sign In" class="IndexButton"/>
         </form>
     </main>
