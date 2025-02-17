@@ -2,6 +2,9 @@
     $validForm = false;
     $validationError = "";
     $loginSucessful = false;
+    if(isset($_COOKIE['user'])){
+        header("Location: chat.php");
+    }
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // Assign POST data
         $formEmail = $_POST['chatEmail'];
@@ -54,7 +57,7 @@
         <h1 class="indexTitle">Welcome to the Chat</h1>
         <form action="index.php" method="post">
             <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
-                <p>Email or password incorrect. Try again</p>
+                <p class="loginIncorrect">Email or password incorrect. Try again</p>
             <?php }?>
             <label for="email" > Email: 
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" class="IndexInput" required/>
