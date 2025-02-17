@@ -1,4 +1,9 @@
 <?php 
+    if(isset($_COOKIE['user'])) {
+        return true;
+    } else {
+        header("Location: index.php");
+    };
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         date_default_timezone_set("AMERICA/SAO_PAULO");
         $text = $_POST['chatText'];
