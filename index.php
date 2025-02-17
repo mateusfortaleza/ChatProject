@@ -57,11 +57,11 @@
             <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
                 <p>Email or password incorrect. Try again</p>
             <?php }?>
-            <label> Email: 
-                <input type="email" name="chatEmail" id="email" placeholder="example@example.com" required/>
+            <label for="email" > Email: 
+                <input type="email" name="chatEmail" id="email" placeholder="example@example.com" class="IndexInput" required/>
             </label>
-            <label for="password"> Password: 
-                <input type="password" name="chatPassword" id="password" required>
+            <label for="password" > Password: 
+                <input type="password" name="chatPassword" id="password" class="IndexInput" required>
             </label>
             <input type="submit" value="Sign In" class="IndexButton"/>
         </form>
