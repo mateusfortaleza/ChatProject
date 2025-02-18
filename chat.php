@@ -17,12 +17,11 @@
         $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", '$text', '$date')";
         $result = mysqli_query($link, $sql);
         
-        
+        mysqli_close($link);
     }
 
-    // Query messages
     
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,13 +43,22 @@
             $linkSql = mysqli_connect("127.0.0.1", "root", "", "chat");
             $sqlResult = "SELECT * FROM messages";
             $resultMessages = mysqli_query($linkSql, $sqlResult);
-            
             $numRows = mysqli_num_rows($resultMessages);
 
             for ($i = 0; $i < $numRows; $i++) { 
-                $currentRow = mysqli_fetch_assoc($resultMessages);
-                echo $currentRow["Message"] . "</br>";
+                    $currentRow = mysqli_fetch_assoc($resultMessages);
+                    echo $currentRow["Message"];
+
+
+                    $sqli = "SELECT * FROM user WHERE ID = " . $currentRow["Sender"];
+
+                    $resultUser = mysqli_query($linkSql, $sqli);
+
+                    $user = mysqli_fetch_assoc($resultUser);
+
+                    echo $user;
             }
+            mysqli_close($linkSql);
         ?></div>
     </main>
 </body>
