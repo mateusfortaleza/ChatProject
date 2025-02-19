@@ -22,9 +22,23 @@ form {
     width: 100%;
 }
 
+.indexForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .IndexButton {
-    padding: 7px 20px;
+    display: inline-block;
+    margin: 30px 0px 0px;
+    padding: 8px 95px;
     border: 0;
+    border-radius: 3px;
+}
+
+.indexInputText {
+   display: flex;
 }
 
 .RegisterButton {
@@ -52,6 +66,8 @@ input[type="button"]:hover, input[type="submit"]:hover {
 
 .IndexInput {
     display: flex;
+    justify-content: center;
+    align-items: center;    
     padding: 5px 30px;
 }
 
@@ -61,12 +77,12 @@ input[type="button"]:hover, input[type="submit"]:hover {
 }
 
 .chatArea {
-    height: 85vh;
     display: flex;
     flex-direction: row;
     align-items: flex-end;   
     justify-content: center; 
-
+    position: fixed;
+    bottom: 5px;
 }
 
 #chatText {
@@ -75,6 +91,7 @@ input[type="button"]:hover, input[type="submit"]:hover {
     border: 0;
     border-radius: 20px;
     width: 800px;
+    margin-top: 1vh;
     line-height: normal;
     vertical-align: middle;
     background-color: #82D1FF;
@@ -116,7 +133,3 @@ input[type="button"]:hover, input[type="submit"]:hover {
     margin: 10px 0px;
 }
 
-.chatMessages p{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
