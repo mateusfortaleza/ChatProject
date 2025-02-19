@@ -34,11 +34,6 @@
     <body>
         <main>
             <h1 class="chat-title">Chat</h1>
-        <form class="chatArea" action="chat.php" method="POST">
-            <label for="chatText" class="sr-only">Chat</label>
-            <input type="text" name="chatText" id="chatText" required/>
-            <input type="submit" value="Submit" class="TextSubmit" />
-        </form>
         <div class="chatMessages"><?php 
             $linkSql = mysqli_connect("127.0.0.1", "root", "", "chat");
             $sqlResult = "SELECT * FROM messages";
@@ -63,6 +58,11 @@
             }
             mysqli_close($linkSql);
         ?></div>
+        <form class="chatArea" action="chat.php" method="POST">
+            <label for="chatText" class="sr-only">Chat</label>
+            <input type="text" name="chatText" id="chatText" required/>
+            <input type="submit" value="Submit" class="TextSubmit" />
+        </form>
     </main>
 </body>
 </html>
