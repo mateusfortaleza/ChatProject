@@ -39,7 +39,7 @@
             <input type="text" name="chatText" id="chatText" required/>
             <input type="submit" value="Submit" class="TextSubmit" />
         </form>
-        <div><?php 
+        <div class="chatMessages"><?php 
             $linkSql = mysqli_connect("127.0.0.1", "root", "", "chat");
             $sqlResult = "SELECT * FROM messages";
             $resultMessages = mysqli_query($linkSql, $sqlResult);
@@ -47,16 +47,19 @@
 
             for ($i = 0; $i < $numRows; $i++) { 
                     $currentRow = mysqli_fetch_assoc($resultMessages);
-                    echo $currentRow["Message"];
-
 
                     $sqli = "SELECT * FROM user WHERE ID = " . $currentRow["Sender"];
+                    $sqlDate = "SELECT Date FROM messages";
 
                     $resultUser = mysqli_query($linkSql, $sqli);
+                    $resultDate = mysqli_query($linkSql, $sqlDate);
 
                     $user = mysqli_fetch_assoc($resultUser);
-
-                    echo $user;
+        ?>      
+        <p><?php echo $currentRow["Message"];?></br>
+        <?php echo $user["Name"];?></br>
+        <?php echo $currentRow["Date"];?></p>
+        <?php
             }
             mysqli_close($linkSql);
         ?></div>
