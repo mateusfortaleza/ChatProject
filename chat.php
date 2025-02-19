@@ -52,7 +52,7 @@
                     $user = mysqli_fetch_assoc($resultUser);
         ?>      
         <p><?php echo $currentRow["Message"];?></br>
-        <?php echo $user["Name"];?></br>
+        User: <?php echo $user["Name"];?></br>
         <?php echo $currentRow["Date"];?></p>
         <?php
             }
