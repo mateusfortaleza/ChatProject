@@ -55,16 +55,14 @@
 <body>
     <main>
         <h1 class="indexTitle">Welcome to the Chat</h1>
-        <form action="index.php" method="post">
+        <form action="index.php" method="post" class="indexForm">
             <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
                 <p class="loginIncorrect">Email or password incorrect. Try again</p>
             <?php }?>
-            <label for="email" > Email: 
+            <label for="email" class="indexInputText">Email: </label>
                 <input type="email" name="chatEmail" id="email" placeholder="example@example.com" class="IndexInput" required/>
-            </label>
-            <label for="password" > Password: 
+            <label for="password" class="indexInputText">Password:</label>
                 <input type="password" name="chatPassword" id="password" class="IndexInput" required>
-            </label>
             <input type="submit" value="Sign In" class="IndexButton"/>
         </form>
     </main>
