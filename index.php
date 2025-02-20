@@ -59,7 +59,6 @@
             <h2 class="text-[30px] flex flex-row justify-center items-center font-semibold mt-5">Sign In</h2>
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
                 <form action="index.php" method="post" class="space-y-6">
-
                     <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") {?>
                         <p class="loginIncorrect">Email or password incorrect. Try again</p>
                         <?php }?>
@@ -78,10 +77,10 @@
                             </div>
                         </div>
                         <button type="submit" value="Sign In" class="flex w-full justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900">Sign In</button>
-                    </form>
-            </div>
+                </form>
             <p class="mt-10 text-center">Don't have a account?</p>
             <a href="register.php" class="font-semibold flex items-center justify-center text-blue-600 hover:text-blue-900">Register Now</a>
+        </div>
     </div>
 </body>
 </html>
