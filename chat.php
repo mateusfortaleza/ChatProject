@@ -63,8 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <form class="chatArea" action="chat.php" method="POST">
             <label for="chatText" class="sr-only">Chat</label>
-            <input type="text" name="chatText" id="chatText" required />
-            <input type="submit" value="Submit" class="TextSubmit" />
+            <div class="mt-2">
+                <div class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-blue-600">
+                    <input type="text" name="chatText" id="chatText" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" required />
+                </div>
+            </div>
+                <div class="flex row items-center rounded-md bg-white pl-3">
+                    <input type="submit" value="Submit" class="flex w-[100px] justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900" />
+            </div>
         </form>
     </main>
 </body>
