@@ -1,68 +1,72 @@
-<?php 
-    if(!isset($_COOKIE['user'])) {
-        header("Location: index.php");
+<?php
+if (!isset($_COOKIE['user'])) {
+    header("Location: index.php");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    date_default_timezone_set("AMERICA/SAO_PAULO");
+    $text = $_POST['chatText'];
+    $date = date("Y-m-d H:i:s");
+
+    $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
+    if (!$link) {
+        echo "Connection error: " . mysqli_connect_errno();
+        die();
     }
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        date_default_timezone_set("AMERICA/SAO_PAULO");
-        $text = $_POST['chatText'];
-        $date = date("Y-m-d H:i:s");
-        
-        $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
-        if(!$link) {
-            echo "Connection error: " . mysqli_connect_errno();
-            die();
-        }
-        
-        $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", '$text', '$date')";
-        $result = mysqli_query($link, $sql);
-        
-        mysqli_close($link);
-    }
+    $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", '$text', '$date')";
+    $result = mysqli_query($link, $sql);
 
-    
+    mysqli_close($link);
+}
+
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chat</title>
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-        <main>
-            <h1 class="chat-title">Chat</h1>
-        <div class="chatMessages"><?php 
-            $linkSql = mysqli_connect("127.0.0.1", "root", "", "chat");
-            $sqlResult = "SELECT * FROM messages";
-            $resultMessages = mysqli_query($linkSql, $sqlResult);
-            $numRows = mysqli_num_rows($resultMessages);
+<html lang="en" class="box-border h-screen bg-white">
 
-            for ($i = 0; $i < $numRows; $i++) { 
-                    $currentRow = mysqli_fetch_assoc($resultMessages);
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
 
-                    $sqli = "SELECT * FROM user WHERE ID = " . $currentRow["Sender"];
-                    $sqlDate = "SELECT Date FROM messages";
+<body class="min-h-screen flex justify-center items-center">
+    <main class="min-h-screen flex flex-col">
+        <div class="px-4 flex justify-center items-center sm:px-0">
+            <h1 class="text-5xl/15 font-semibold text-gray-900">Chat</h1>
+        </div>
+        <div class="mt-6 border-t border-gray-200">
+            <div>
+            </div>
+        </div>
 
-                    $resultUser = mysqli_query($linkSql, $sqli);
-                    $resultDate = mysqli_query($linkSql, $sqlDate);
+        <div id="response-messages">
+            <script type="text/javascript">
+                function reloadMessages() {
+                    $.ajax({
+                    url: "messages.php"
+                    }).done(function(data) {
+                        document.getElementById("response-messages").innerHTML = "";
+                        data.map(msg => {
+                            document.getElementById("response-messages").insertAdjacentHTML("beforeend", `<p>${msg.MessageText} | ${msg.MessageName} | ${msg.MessageDate}</p>`);
+                        })
+                    });
+                }
 
-                    $user = mysqli_fetch_assoc($resultUser);
-        ?>      
-        <p><?php echo $currentRow["Message"];?></br>
-        User: <?php echo $user["Name"];?></br>
-        <?php echo $currentRow["Date"];?></p>
-        <?php
-            }
-            mysqli_close($linkSql);
-        ?></div>
+                setInterval(reloadMessages, 500);
+            </script>
+        </div>
+
         <form class="chatArea" action="chat.php" method="POST">
             <label for="chatText" class="sr-only">Chat</label>
-            <input type="text" name="chatText" id="chatText" required/>
+            <input type="text" name="chatText" id="chatText" required />
             <input type="submit" value="Submit" class="TextSubmit" />
         </form>
     </main>
 </body>
+
 </html>
