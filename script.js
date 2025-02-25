@@ -1,4 +1,4 @@
-
+const form = document.getElementById("chatForm");
 
 
 function reloadMessages() {
@@ -24,3 +24,22 @@ function reloadMessages() {
 
 reloadMessages();
 setInterval(reloadMessages, 1000);
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    
+    const formData = {
+        chatText: document.getElementById("chatText").value,
+        chatUser: document.getElementById("chatUser").value
+    };
+    
+    $.ajax({
+        url: "message-input.php",
+        method: "POST",
+        data: formData
+    }).done(function () {
+        reloadMessages();
+    });
+    
+    document.getElementById("chatText").value = "";
+});
