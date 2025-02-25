@@ -55,27 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="submit" id="chatSubmit" value="Submit"
                 class="flex-shrink-0 w-[90px] h-[60px] justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900" />
             </div>
-            <script type="text/javascript">
-                const form = document.getElementById("chatForm");
-                form.addEventListener("submit", function (event) {
-                    event.preventDefault();
-                    
-                    const formData = {
-                        chatText: document.getElementById("chatText").value,
-                        chatUser: document.getElementById("chatUser").value
-                    };
-                    
-                    $.ajax({
-                        url: "message-input.php",
-                        method: "POST",
-                        data: formData
-                    }).done(function () {
-                        reloadMessages();
-                    });
-                    
-                    document.getElementById("chatText").value = "";
-                });
-                </script>
         </form>
     </main>
 </body>
