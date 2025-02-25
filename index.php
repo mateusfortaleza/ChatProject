@@ -45,14 +45,14 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-white">
+<html lang="en" class="h-full bg-blue-700">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Chat</title>
 </head>
-<body class="h-full bg-blue-700"> 
+<body class="h-full"> 
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 lg:py-24">
         <div class="bg-white shadow-lg rounded-lg p-6 lg:p-12">
             <h1 class="text-[50px] flex flex-row justify-center items-center font-semibold mt-10">Welcome to the Chat</h1>
