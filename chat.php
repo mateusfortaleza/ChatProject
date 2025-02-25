@@ -1,5 +1,7 @@
 <?php
-if (!isset($_COOKIE['user'])) {
+
+session_start();
+if (!isset($_SESSION['userID'])) {
     header("Location: index.php");
 }
 
@@ -14,12 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die();
     }
 
-    $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_COOKIE['user'] . ", '$text', '$date')";
+    $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
     $result = mysqli_query($link, $sql);
 
     mysqli_close($link);
 }
-
 
 ?>
 
