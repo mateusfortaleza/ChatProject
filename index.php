@@ -2,7 +2,8 @@
     $validForm = false;
     $validationError = "";
     $loginSucessful = false;
-    if(isset($_COOKIE['user'])){
+    session_start();
+    if (isset($_SESSION['userID'])){
         header("Location: chat.php");
     }
     if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -30,7 +31,9 @@
                     // Está logado
                     $loginSucessful = true;
                     $user = mysqli_fetch_assoc($result);
-                    setcookie("user", $user['ID']);
+                    $_SESSION['userID'] = $user['ID'];
+                    $_SESSION['userName'] = $user['Name'];
+                    $_SESSION['userEmail'] = $user['Email'];
                     header('Location: chat.php');
                 }
 
