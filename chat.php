@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <textarea type="text" name="chatText" id="chatText"
                     class="block w-full py-1.5 pr-3 pl-1 text-xl text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                     required></textarea>
-                    <input type="hidden" name="chatUser" id="chatUser" value="<?php echo $_COOKIE['user']; ?>" />
+                    <input type="hidden" name="chatUser" id="chatUser" value="<?php echo $_SESSION['userID']; ?>" />
                 </div>
                 <input type="submit" id="chatSubmit" value="Submit"
                 class="flex-shrink-0 w-[90px] h-[60px] justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900" />
