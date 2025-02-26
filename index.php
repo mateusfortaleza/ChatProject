@@ -1,7 +1,5 @@
 <?php 
 require 'business.php';
-phpinfo();
-die();
 $validForm = false;
 $validationError = "";
 $loginSucessful = false;
