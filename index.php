@@ -1,25 +1,27 @@
-<?php
+<?php 
 require 'business.php';
+phpinfo();
+die();
 $validForm = false;
 $validationError = "";
 $loginSucessful = false;
+
 session_start();
 if (isset($_SESSION['userID'])) {
     header("Location: chat.php");
 }
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Assign POST data
     $formEmail = $_POST['chatEmail'];
     $formPassword = $_POST['chatPassword'];
-
     $validForm = true;
     // Login user
     if ($validForm) {
-
-        if (login_is_valid($formEmail, $formPassword)) {
+        $user = get_user($formEmail, $formPassword);
+        if (login_is_valid($user)) {
             // Está logado
             $loginSucessful = true;
-            $user = mysqli_fetch_assoc($result);
             $_SESSION['userID'] = $user['ID'];
             $_SESSION['userName'] = $user['Name'];
             $_SESSION['userEmail'] = $user['Email'];
