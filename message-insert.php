@@ -6,16 +6,9 @@
         $user = $_POST['chatUser'];
         $date = date("Y-m-d H:i:s");
     
-        $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
-        if (!$link) {
-            echo "Connection error: " . mysqli_connect_errno();
-            die();
-        }
-    
         $sql = "INSERT INTO messages (Sender, Message, Date) VALUES ($user, '$text', '$date')";
-        $result = mysqli_query($link, $sql);
+        chat_query($sql);
     
-        mysqli_close($link);
     }
     else
     {
