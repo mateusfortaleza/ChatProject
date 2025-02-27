@@ -12,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
     chat_query($sql);
-
-    mysqli_close($link);
 }
 
 ?>
