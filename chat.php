@@ -1,5 +1,5 @@
 <?php
-
+require 'db.php';
 session_start();
 if (!isset($_SESSION['userID'])) {
     header("Location: index.php");
@@ -10,14 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $text = $_POST['chatText'];
     $date = date("Y-m-d H:i:s");
 
-    $link = mysqli_connect('127.0.0.1', 'root', '', 'chat');
-    if (!$link) {
-        echo "Connection error: " . mysqli_connect_errno();
-        die();
-    }
-
     $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
-    $result = mysqli_query($link, $sql);
+    chat_query($sql);
 
     mysqli_close($link);
 }
