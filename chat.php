@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $text = $_POST['chatText'];
     $date = date("Y-m-d H:i:s");
 
-    $sql = "INSERT INTO messages (Sender, Message, Date) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
+    $sql = "INSERT INTO messages (Sender, Message, CreatedAt) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
     chat_query($sql);
 }
 
