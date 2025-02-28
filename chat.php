@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="chatText" class="sr-only">Chat</label>
             <div class="flex items-center w-full space-x-2">
                 <div class="flex-grow flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-blue-600">
-                    <textarea type="text" name="chatText" id="chatText"
+                    <textarea name="chatText" id="chatText"
                     class="block w-full py-1.5 pr-3 pl-1 text-xl text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                     required></textarea>
                     <input type="hidden" name="chatUser" id="chatUser" value="<?php echo $_SESSION['userID']; ?>" />
