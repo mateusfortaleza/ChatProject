@@ -33,7 +33,7 @@
                 $registerSuccessful = true;
             } else {
                 echo "Registration unsuccessfull. Contact support if this problem persists";
-                echo mysqli_error($link);
+
             }
         }
     }
