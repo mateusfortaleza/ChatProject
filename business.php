@@ -4,8 +4,7 @@ require 'db.php';
 function get_user($email, $password) {
     $sql = "SELECT * FROM user WHERE Email = '$email' AND password = '$password'";
     $result = chat_query($sql);
-    $user = mysqli_fetch_assoc($result);
-    return $user;
+    return mysqli_fetch_assoc($result);
 }
 
 function login_is_valid($user) {
