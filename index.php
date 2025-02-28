@@ -2,8 +2,7 @@
 require 'business.php';
 $validForm = false;
 $validationError = "";
-$loginSucessful = false;
-
+$loginSuccessful = false;
 session_start();
 if (isset($_SESSION['userID'])) {
     header("Location: chat.php");
@@ -13,13 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Assign POST data
     $formEmail = $_POST['chatEmail'];
     $formPassword = $_POST['chatPassword'];
-    $validForm = true;
     // Login user
     if ($validForm) {
         $user = get_user($formEmail, $formPassword);
         if (login_is_valid($user)) {
             // Está logado
-            $loginSucessful = true;
+            $loginSuccessful = true;
             $_SESSION['userID'] = $user['ID'];
             $_SESSION['userName'] = $user['Name'];
             $_SESSION['userEmail'] = $user['Email'];
@@ -49,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <h2 class="text-[30px] flex flex-row justify-center items-center font-semibold mt-5">Sign In</h2>
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
                 <form action="index.php" method="post" class="space-y-6">
-                    <?php if (!$loginSucessful && $_SERVER['REQUEST_METHOD'] == "POST") { ?>
+                    <?php if (!$loginSuccessful && $_SERVER['REQUEST_METHOD'] == "POST") { ?>
                         <p class="loginIncorrect">Email or password incorrect. Try again</p>
                     <?php } ?>
                     <div>
@@ -75,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         class="flex w-full justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900">Sign
                         In</button>
                 </form>
-                <p class="mt-10 text-center">Don't have a account?</p>
+                <p class="mt-10 text-center">Don't have an account?</p>
                 <a href="register.php"
                     class="font-semibold flex items-center justify-center text-blue-600 hover:text-blue-900">Register
                     Now</a>
