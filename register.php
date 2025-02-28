@@ -1,55 +1,40 @@
 <?php
     // Page level variables
-    $registerSucessful = false;
+    require 'db.php';
+    $registerSuccessful = false;
     $validForm = false;
     $validationError = "";
-
     function validateEmail($email) {
-        $conn = mysqli_connect('127.0.0.1','root','','chat');    
-        if(!$conn) {
-            echo "Connection failed";
-            exit();
-        }
         $EmailSql = "SELECT * FROM user WHERE email = '$email' ";
-        $result = mysqli_query($conn, $EmailSql);
+        $result = chat_query($EmailSql);
         $numRows = mysqli_num_rows($result);
-        mysqli_close($conn);
-        if($numRows == 0) {
+        if ($numRows == 0) {
             return true;
         } else {
             return false;   
         }
     };
-
+    
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // Assign POST data
         $formName = $_POST['chatName'];
         $formEmail = $_POST['chatEmail'];
         $formPassword = $_POST['chatPassword'];
-
+        
         $validEmail = validateEmail($formEmail);
-
+        
         $validForm = $validEmail;
         // Register user
         if ($validForm) {
-            $link = mysqli_connect("127.0.0.1","root","","chat");
-            if (!$link) {
-                echo "Connection unsuccessfull"; 
-                exit;
-            }
-        
+            
             $sql = "INSERT INTO user (Name, Email, Password) VALUES ('" . $formName . "', '" . $formEmail . "', '" . $formPassword . "' )";
-
-            $query = mysqli_query($link, $sql);
-
+            $query = chat_query($sql);
             if ($query) {
-                $registerSucessful = true;
+                $registerSuccessful = true;
             } else {
                 echo "Registration unsuccessfull. Contact support if this problem persists";
                 echo mysqli_error($link);
             }
-            
-            mysqli_close($link);
         }
     }
 ?>
@@ -65,7 +50,7 @@
 <body class="h-full bg-blue-700">
     <main class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 lg:py-24">
         <div class="bg-white shadow-lg rounded-lg p-6 lg:p-12">
-        <?php if ($registerSucessful) { ?>
+        <?php if ($registerSuccessful) { ?>
             <h2>Registration sucessful</h2>
             <p><a href="index.php">Back to Sign In</a></p>
         <?php } else { ?>
