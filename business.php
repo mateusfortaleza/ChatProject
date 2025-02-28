@@ -38,3 +38,4 @@ function message_check_new() {
         return false;
     }
 }
+

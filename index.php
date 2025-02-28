@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $formEmail = $_POST['chatEmail'];
     $formPassword = $_POST['chatPassword'];
     // Login user
-    if ($validForm) {
+    if ($validForm = true) {
         $user = get_user($formEmail, $formPassword);
         if (login_is_valid($user)) {
             // Está logado
