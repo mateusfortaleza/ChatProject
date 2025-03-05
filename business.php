@@ -19,7 +19,7 @@ function login_is_valid($user) {
 /// Check if there are new messages
 function message_check_new() {
 
-    $sql = "SELECT MAX(DATE) AS LastMessageDate FROM messages";
+    $sql = "SELECT MAX(CreatedAt) AS LastMessageDate FROM messages";
     $rset = chat_query($sql);
     
     $arrMaxDate = mysqli_fetch_assoc($rset);
@@ -27,7 +27,7 @@ function message_check_new() {
 
     if(!isset($GLOBALS['lastMessageDate'])) {
         $_SESSION['lastMessageDate'] = $lastMessageDateDatabase;
-    };
+    }
 
     $lastMessageDateApp = strtotime($_SESSION['lastMessageDate']);
     
@@ -39,3 +39,4 @@ function message_check_new() {
     }
 }
 
+header("Content-Type: application/json");
