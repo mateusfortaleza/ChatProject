@@ -1,6 +1,6 @@
 <?php 
 require 'db.php';
-
+session_start();
 function get_user($email, $password) {
     $sql = "SELECT * FROM user WHERE Email = '$email' AND password = '$password'";
     $result = chat_query($sql);
@@ -26,13 +26,13 @@ function message_check_new() {
     $lastMessageDateDatabase = strtotime($arrMaxDate['LastMessageDate']);
 
     if(!isset($GLOBALS['lastMessageDate'])) {
-        $GLOBALS['lastMessageDate'] = $lastMessageDateDatabase;
+        $_SESSION['lastMessageDate'] = $lastMessageDateDatabase;
     };
 
-    $lastMessageDateApp = strtotime($GLOBALS['lastMessageDate']);
+    $lastMessageDateApp = strtotime($_SESSION['lastMessageDate']);
     
     if($lastMessageDateDatabase > $lastMessageDateApp) {
-        $GLOBALS['lastMessageDate'] = $lastMessageDateDatabase;
+        $_SESSION['lastMessageDate'] = $lastMessageDateDatabase;
         return true;
     } else {
         return false;
