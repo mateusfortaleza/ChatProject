@@ -1,13 +1,14 @@
 const form = document.getElementById("chatForm");
 
 
+
 function reloadMessages() {
     $.ajax({
-        url: "messages.php"
+        url: "message-get-all.php"
     }).done(function (data) {
         document.getElementById("response-messages").innerHTML = "";
         data.map(msg => {
-            const isSender = msg.MessageUserID == "<?php echo $_COOKIE['user']; ?>";
+            const isSender = msg.MessageUserID === "<?php echo $_SESSION['userID']; ?>";
             const messageClass = isSender ?  "bg-green-200 text-gray-900 self-start" : "bg-blue-500 text-white self-end" ;
             const roundedClass = isSender ? "rounded-lg rounded-br-none" : "rounded-lg rounded-bl-none";
             document.getElementById("response-messages").insertAdjacentHTML("beforeend", `
@@ -34,12 +35,18 @@ form.addEventListener("submit", function (event) {
     };
     
     $.ajax({
-        url: "message-input.php",
+        url: "message-insert.php",
         method: "POST",
         data: formData
-    }).done(function () {
+    })
+    .done(function () {
         reloadMessages();
+    })
+    .fail(function (xhr, status, error) {
+        alert("Error: " + xhr.responseText);
+        console.error("AJAX Error:", status, error);
     });
+
     
     document.getElementById("chatText").value = "";
 });
