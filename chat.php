@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = date("Y-m-d H:i:s");
 
     $sql = "INSERT INTO messages (Sender, Message, CreatedAt) VALUES (" . $_SESSION['userID'] . ", '$text', '$date')";
+    mysql_escape_utf8($sql);
     chat_query($sql);
 }
 
