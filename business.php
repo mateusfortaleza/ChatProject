@@ -1,6 +1,5 @@
 <?php 
 require 'db.php';
-session_start();
 function get_user($email, $password) {
     $sql = "SELECT * FROM user WHERE Email = '$email' AND password = '$password'";
     $result = chat_query($sql);
@@ -38,5 +37,3 @@ function message_check_new() {
         return false;
     }
 }
-
-header("Content-Type: application/json");
