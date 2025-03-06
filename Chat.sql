@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Sender` int(11) NOT NULL DEFAULT 0,
   `Message` varchar(50) NOT NULL DEFAULT '0',
-  `Date` varchar(50) NOT NULL DEFAULT '0',
+  `CreatedAt` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `FK__user` (`Sender`),
   CONSTRAINT `FK__user` FOREIGN KEY (`Sender`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
