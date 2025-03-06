@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'business.php';
 $validForm = false;
 $validationError = "";
@@ -6,14 +6,16 @@ $loginSuccessful = false;
 session_start();
 if (isset($_SESSION['userID'])) {
     header("Location: chat.php");
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Assign POST data
     $formEmail = $_POST['chatEmail'];
     $formPassword = $_POST['chatPassword'];
+    $validForm = true;
     // Login user
-    if ($validForm = true) {
+    if ($validForm) {
         $user = get_user($formEmail, $formPassword);
         if (login_is_valid($user)) {
             // Está logado
@@ -79,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     Now</a>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
