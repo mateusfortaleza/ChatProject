@@ -1,5 +1,5 @@
 const form = document.getElementById("chatForm");
-const messageReload = "<?php require 'message-check-new'; ?>";
+
 
 function reloadMessages() {
     $.ajax({
@@ -23,9 +23,9 @@ function reloadMessages() {
 }
 reloadMessages();
 
-if (messageReload === true) {
-    reloadMessages();
-}
+
+
+
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
