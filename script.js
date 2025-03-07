@@ -6,8 +6,7 @@ function reloadMessages() {
   }).done(function (data) {
     document.getElementById("response-messages").innerHTML = "";
     data.map((msg) => {
-      const isSender =
-        msg.MessageUserID === "<?php echo $_SESSION['userID']; ?>";
+      const isSender = msg.MessageUserID == document.getElementById("chatUser").value;
       const messageClass = isSender
         ? "bg-green-200 text-gray-900 self-start"
         : "bg-blue-500 text-white self-end";
@@ -35,14 +34,13 @@ function messageCheckNew() {
   $.ajax({
     url: "message-check-new.php",
   }).done(function (data) {
-    if (data.length > 0) {
+    if (data.newMessages) {
       reloadMessages();
     }
   });
 }
 
-
-setInterval(messageCheckNew(), 500);
+setInterval(messageCheckNew, 1000);
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();

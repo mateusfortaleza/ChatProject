@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require 'business.php';
 
     if (message_check_new()) {

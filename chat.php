@@ -39,8 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div id="response-messages" class="flex flex-col space-y-4 p-4 overflow-y-auto h-full mb-16">
         </div>
-        <form class="flex items-center justify-center w-full max-w-full px-4 mb-3 fixed bottom-0" id="chatForm"
-            action="chat.php" method="POST">
+        <form class="flex items-center justify-center w-full max-w-full px-4 mb-3 fixed bottom-0" id="chatForm" action="chat.php" method="POST">
             <label for="chatText" class="sr-only">Chat</label>
             <div class="flex items-center w-full space-x-2">
                 <div

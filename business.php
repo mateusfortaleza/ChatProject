@@ -1,5 +1,6 @@
 <?php 
 require 'db.php';
+
 function get_user($email, $password) {
     $sql = "SELECT * FROM user WHERE Email = '$email' AND password = '$password'";
     $result = chat_query($sql);
@@ -15,25 +16,21 @@ function login_is_valid($user) {
     }
 }
 
-/// Check if there are new messages
 function message_check_new() {
+    $currentLastMessageDate = get_last_message_date();
+    $userLastMessageDate = $_SESSION['userLastMessageDate'];
 
-    $sql = "SELECT MAX(CreatedAt) AS LastMessageDate FROM messages";
-    $rset = chat_query($sql);
-    
-    $arrMaxDate = mysqli_fetch_assoc($rset);
-    $lastMessageDateDatabase = strtotime($arrMaxDate['LastMessageDate']);
-
-    if(!isset($GLOBALS['lastMessageDate'])) {
-        $_SESSION['lastMessageDate'] = $lastMessageDateDatabase;
-    }
-
-    $lastMessageDateApp = strtotime($_SESSION['lastMessageDate']);
-    
-    if($lastMessageDateDatabase > $lastMessageDateApp) {
-        $_SESSION['lastMessageDate'] = $lastMessageDateDatabase;
+    if ($currentLastMessageDate > $userLastMessageDate) {
+        $_SESSION['userLastMessageDate'] = $currentLastMessageDate;
         return true;
-    } else {
-        return false;
     }
+    else
+        return false;
+}
+
+function get_last_message_date() {
+    $sql = "SELECT MAX(CreatedAt) AS LastMessageDate FROM messages";
+    $result = chat_query($sql);
+    $arrLastMessageDate = mysqli_fetch_assoc($result);
+    return strtotime($arrLastMessageDate['LastMessageDate']);
 }

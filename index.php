@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['userID'] = $user['ID'];
             $_SESSION['userName'] = $user['Name'];
             $_SESSION['userEmail'] = $user['Email'];
+            $_SESSION['userLastMessageDate'] = get_last_message_date();
             header('Location: chat.php');
         }
     } else {
