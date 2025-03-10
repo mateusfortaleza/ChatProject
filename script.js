@@ -114,7 +114,7 @@ function processFileTags() {
     const content = message;
 
     // Replace file tags with appropriate elements
-    const updatedContent = ontent.replace(/\[file:([\w\-.]+\.[a-zA-Z0-9]+)]/g, (match, fileName) => {
+    const updatedContent = content.replace(/\[file:([\w\-.]+\.[a-zA-Z0-9]+)]/g, (match, fileName) => {
       const fileExt = fileName.split('.').pop().toLowerCase();
 
       if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExt)) {
