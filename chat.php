@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </label>
           <input type="file" name="chatFile" id="chatFile" class="hidden" onchange="updateFileLabel()" />
           <input type="submit" id="chatSubmit" value="Submit"
-            class="w-[90px] h-[60px] justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900" />
+            class="cursor-pointer w-[90px] h-[60px] justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:bg-blue-900" />
         </div>
       </div>
       <div id="filePreview" style="display: none;" class="mt-2 p-2 bg-gray-50 rounded-md text-sm text-gray-700 w-full max-w-full">
