@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'db.php';
 
 if (isset($_GET['file'])) {
@@ -15,43 +15,45 @@ if (isset($_GET['file'])) {
     exit;
 }
 
-function get_user($email, $password) {
+function get_user($email, $password): array
+{
     $sql = "SELECT * FROM user WHERE Email = '$email' AND password = '$password'";
     $result = chat_query($sql);
     return mysqli_fetch_assoc($result);
 }
 
-function login_is_valid($user) {
+function login_is_valid($user): bool
+{
     if (isset($user)) {
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }
 
-function message_check_new() {
+function message_check_new(): bool
+{
     $currentLastMessageDate = get_last_message_date();
     $userLastMessageDate = $_SESSION['userLastMessageDate'];
 
     if ($currentLastMessageDate > $userLastMessageDate) {
         $_SESSION['userLastMessageDate'] = $currentLastMessageDate;
         return true;
-    }
-    else
+    } else
         return false;
 }
 
-function get_last_message_date() {
+function get_last_message_date(): int
+{
     $sql = "SELECT MAX(CreatedAt) AS LastMessageDate FROM messages";
     $result = chat_query($sql);
     $arrLastMessageDate = mysqli_fetch_assoc($result);
     return strtotime($arrLastMessageDate['LastMessageDate']);
 }
 
-function message_with_file()
+function message_with_file(): void
 {
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (isset($_FILES["userFile"]) && $_FILES["userFile"]["error"] == UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['userFile']['tmp_name'];
             $fileName = $_FILES['userFile']['name'];
@@ -86,7 +88,7 @@ function message_with_file()
                 }
             }
         } else {
-            if(isset($_FILES["userFile"])){
+            if (isset($_FILES["userFile"])) {
                 $errorCode = $_FILES["userFile"]["error"];
                 echo "Upload failed. Error code: $errorCode";
             } else {
