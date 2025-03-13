@@ -1,4 +1,25 @@
 {
-  "tabWidth": 2,
-  "useTabs": false
+  "tabWidth": 4,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 80,
+  "plugins": ["prettier-plugin-php"],
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "parser": "php"
+      }
+    },
+    {
+      "files": "*.js",
+      "options": {
+        "parser": "babel"
+      }
+    }
+  ],
+  "endOfLine": "auto", 
+  "arrowParens": "always"
 }
